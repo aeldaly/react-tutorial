@@ -21,7 +21,6 @@ class HelloWorld extends Component {
         <br/>
         <input
           type="text"
-          // value={this.state.greeting}
           onChange={this.handleChange.bind(this)}/>
       </div>
     )
