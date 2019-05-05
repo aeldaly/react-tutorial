@@ -10,7 +10,7 @@ class HelloWorld extends Component {
   }
 
   handleChange(event) {
-    let greeting = event.target.value ? "Hello, " + event.target.value + "!" : "Hello, stranger!"
+    let greeting = event.target.value ? `Hello, ${event.target.value}!` : "Hello, stranger!";
     this.setState({greeting})
   }
 
