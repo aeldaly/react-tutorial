@@ -23,7 +23,7 @@ class HelloWorld extends Component {
           type="text"
           onChange={this.handleChange.bind(this)}/>
       </div>
-    )
+    );
   }
 }
 
