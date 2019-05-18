@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class WeatherApp extends Component {
+
   constructor(props) {
     super(props);
-    this.handleSelectCity = this.handleSelectCity.bind(this);
+    this.handleCheckWeather = this.handleCheckWeather.bind(this);
     this.state = {
       city: null,
       temperature: null,
@@ -14,7 +15,7 @@ class WeatherApp extends Component {
     };
   }
 
-  handleSelectCity(e) {
+  handleCheckWeather(e) {
     e.preventDefault();
     const city = e.target.elements.city.value.trim();
     if (city) {
@@ -67,20 +68,41 @@ class WeatherApp extends Component {
   render() {
     return (
       <div>
-        <label>Enter City</label>
-        <form onSubmit={this.handleSelectCity}>
-          <input type="text" name="city"/>
-          <button>Check Weather</button>
-        </form>
-        <div style={this.state.textStyle}>
-          {
-            this.state.temperature &&
-            <p>Current temperature in {this.state.city}: {this.state.temperature}</p>
-          }
-        </div>
+        <CityPick
+          handleCheckWeather={this.handleCheckWeather}
+        />
+        <Temperature
+          textStyle={this.state.textStyle}
+          city={this.state.city}
+          temperature={this.state.temperature}
+        />
       </div>
     )
   };
 }
+
+const CityPick = (props) => {
+  return (
+    <div>
+      <label>Enter City:</label>
+      <form onSubmit={props.handleCheckWeather}>
+        <input type="text" name="city"/>
+        <br/>
+        <button>Check Weather</button>
+      </form>
+    </div>
+  );
+};
+
+const Temperature = (props) => {
+  return (
+    <div style={props.textStyle}>
+      {
+        props.temperature &&
+        <p>Current temperature in {props.city}: {props.temperature} {String.fromCharCode(176)}C</p>
+      }
+    </div>
+  );
+};
 
 export default WeatherApp;
