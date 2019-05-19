@@ -35,9 +35,7 @@ class WeatherApp extends Component {
       .then( (res) => {
         const temperature = res.data.main.temp;
         if (temperature) {
-          const textStyle = {
-            color: this.setColor(temperature)
-          };
+          const textStyle = this.setColor(temperature);
           this.setState( () => {
             return {
               temperature,
@@ -52,17 +50,19 @@ class WeatherApp extends Component {
   }
 
   setColor(temperature) {
+    let color;
     if (temperature < -10) {
-      return 'STEELBLUE';
+      color = 'STEELBLUE';
     } else if (temperature < 0) {
-      return 'LIGHTBLUE';
+      color = 'LIGHTBLUE';
     } else if (temperature < 10) {
-      return 'DARKSEAGREEN';
+      color = 'DARKSEAGREEN';
     } else if (temperature < 20) {
-      return 'GOLD';
+      color = 'GOLD';
     } else {
-      return 'CRIMSON';
+      color = 'CRIMSON';
     }
+    return {color};
   }
 
   render() {
